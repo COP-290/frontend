@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PaginationControl } from 'react-bootstrap-pagination-control';
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
-
+import { API } from "./api";
 export default function Tag() {
     
     const [tags,setTags] = useState([])
@@ -11,7 +11,7 @@ export default function Tag() {
     const [data, setdata] = useState(null);
     
     useEffect(() => {
-        fetch('/tag/list').then((res) =>
+        fetch(`${API}/tag/list`).then((res) =>
             res.json().then((data) => {
                 const p = Object.values(data)
                 const q = JSON.stringify(p)
@@ -28,7 +28,7 @@ export default function Tag() {
     };
 
     useEffect(() => {
-        fetch(`/tag/6/${page}`).then((res) =>
+        fetch(`${API}/tag/6/${page}`).then((res) =>
             res.json().then((data) => {
                 console.log(data);
                 setdata(data)
@@ -37,7 +37,7 @@ export default function Tag() {
     }, [page]);
 
     useEffect(() => {
-        fetch('/tag/number').then((res) =>
+        fetch(`${API}/tag/number`).then((res) =>
             res.json().then((data) => {
                 console.log(data);
                 setNumber(parseInt(data))

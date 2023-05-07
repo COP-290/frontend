@@ -2,7 +2,7 @@ import JoditEditor from "jodit-react";
 import { useRef, useState, useEffect, useMemo } from "react";
 import Select from 'react-select';
 import { useNavigate } from "react-router-dom";
-
+import { API } from "./api";
 export default function New_ques() {
 
   const [tags, setTags] = useState([])
@@ -24,7 +24,7 @@ export default function New_ques() {
 
   function api(Title, Body, Tags) {
     console.log(Title, Body, Tags)
-    fetch(`/ask/question`, {
+    fetch(`${API}/ask/question`, {
       method: 'POST',
       body: JSON.stringify({
         'Body': Body,
@@ -53,7 +53,7 @@ export default function New_ques() {
   }
 
   useEffect(() => {
-    fetch('/tag/list').then((res) =>
+    fetch(`${API}/tag/list`).then((res) =>
       res.json().then((data) => {
         const p = Object.values(data)
         const q = JSON.stringify(p)

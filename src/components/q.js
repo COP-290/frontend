@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect,useState } from "react";
+import { API } from "./api";
 export default function Q(v){
 
     const [user,setUser] = useState([]);
@@ -13,7 +14,7 @@ export default function Q(v){
     }
 
     useEffect(() => {
-        fetch(`/user/${value[0][1]}`).then((res) =>
+        fetch(`${API}/user/${value[0][1]}`).then((res) =>
             res.json().then((data) => {
             //   console.log(data)
               setUser(data[1])

@@ -3,7 +3,7 @@ import "highlight.js/styles/github.css";
 import hljs from "highlight.js";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { PaginationControl } from 'react-bootstrap-pagination-control';
-
+import { API } from "./api";
 export default function Search() {
 
   const [data, setdata] = useState(null);
@@ -25,7 +25,7 @@ export default function Search() {
   });
 
   useEffect(() => {
-    fetch(`/question/number`).then((res) =>
+    fetch(`${API}/question/number`).then((res) =>
       res.json().then((data) => {
         console.log(data);
         setNumber(parseInt(data))
@@ -34,7 +34,7 @@ export default function Search() {
   }, []);
 
   async function callml() {
-    await fetch(`/ml/${page}/${location.state.query}`).then((res) =>
+    await fetch(`${API}/ml/${page}/${location.state.query}`).then((res) =>
       res.json().then((data) => {
         console.log(data);
         setTaglist(data['lst'])

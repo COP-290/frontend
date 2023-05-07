@@ -4,7 +4,7 @@ import hljs from "highlight.js";
 import JoditEditor from "jodit-react";
 import Ans from "./ans";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { API } from "./api";
 export default function Par_ques() {
   
   let navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function Par_ques() {
 
   function get_ans(){
 
-    fetch(`/${id}/${sortby}/ans`).then((res) =>
+    fetch(`${API}/${id}/${sortby}/ans`).then((res) =>
     res.json().then((data) => {
       console.log(data);
       setans(data)
@@ -38,7 +38,7 @@ export default function Par_ques() {
 
   useEffect(() => {
     
-    fetch(`/${id}/answer`).then((res) =>
+    fetch(`${API}/${id}/answer`).then((res) =>
     res.json().then((data) => {
       console.log(data);
       setdata(data)
@@ -50,13 +50,13 @@ export default function Par_ques() {
 
   function inc(){
 
-    fetch('/user').then((res) =>
+    fetch(`${API}/user`).then((res) =>
         res.json().then((dat) => {
           console.log(dat)
           if (dat===false){to('login')}
         })
     );    
-    fetch(`/${id}/upscore`).then((res) =>
+    fetch(`${API}/${id}/upscore`).then((res) =>
     res.json().then((data) => {
       console.log(data);
       if (data===score){alert("Already Voted")}
@@ -66,14 +66,14 @@ export default function Par_ques() {
   }
 
   function dec(){
-    fetch('/user').then((res) =>
+    fetch(`${API}/user`).then((res) =>
         res.json().then((dat) => {
           console.log(dat)
           if (dat===false){to('login')}
         })
     );
 
-    fetch(`/${id}/downscore`).then((res) =>
+    fetch(`${API}/${id}/downscore`).then((res) =>
     res.json().then((data) => {
       console.log(data);
       if (data===score){alert("Already Voted")}
@@ -83,7 +83,7 @@ export default function Par_ques() {
   }
 
   useEffect(() => {
-  if (data){    fetch(`/user/${data[0][1]}`).then((res) =>
+  if (data){    fetch(`${API}/user/${data[0][1]}`).then((res) =>
         res.json().then((data) => {
           console.log(data)
           setUser(data[1])
@@ -93,7 +93,7 @@ export default function Par_ques() {
   },[data]);   
 
   async function api(id,Answer){
-  await fetch(`/${id}/new_ans`, {
+  await fetch(`${API}/${id}/new_ans`, {
       method: 'POST',
       body: JSON.stringify({
         'Answer':Answer,

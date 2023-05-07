@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyImage from '../assets/askq.jpeg'
+import { API } from "./api";
 
 export default function Navbar() {
   const [quer,setQuer] = useState(null);
@@ -29,7 +30,7 @@ export default function Navbar() {
   }
 
     function redirect(){
-      fetch('/checkuser').then((res) =>
+      fetch(`${API}/checkuser`).then((res) =>
           res.json().then((data) => {
               console.log(data);
               if(data===true){
@@ -44,7 +45,7 @@ export default function Navbar() {
 
     useEffect(() => {
 
-      fetch('/user').then((res) =>
+      fetch(`${API}/user`).then((res) =>
       res.json().then((dat) => {
         if (dat){setImage(dat['detail'][9])}
       })

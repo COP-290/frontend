@@ -1,13 +1,13 @@
 import {useEffect,useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import { PaginationControl } from 'react-bootstrap-pagination-control';
-
+import { API } from './api';
 export default function User() {
     const [data,setdata] = useState('/score');
     const [page, setPage] = useState(1)
     const [number, setNumber] = useState(3100)
     useEffect(() => {
-        fetch(`/users/${page}`).then((res) =>
+        fetch(`${API}/users/${page}`).then((res) =>
             res.json().then((data) => {
                 setdata(data)
             })

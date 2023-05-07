@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { API } from "./api";
 export default function Signup() {
   const [username,setUsername] = useState('')
   const [email,setEmail] = useState('')
@@ -20,7 +20,7 @@ const to = async (id) => {
 
 async function api(Username,Email,Password){
   console.log(Username,Email,Password)
-  await fetch(`/register`, {
+  await fetch(`${API}/register`, {
       method: 'POST',
       body: JSON.stringify({
         'Email': Email,
@@ -36,7 +36,7 @@ async function api(Username,Email,Password){
       .then(function(data)
       {console.log(data)
     }).catch(error => console.error('Error:', error)); 
-  await fetch(`/login/`, {
+  await fetch(`${API}/login/`, {
     method: 'POST',
     body: JSON.stringify({
       'Email': Email,
@@ -53,7 +53,7 @@ async function api(Username,Email,Password){
     {console.log(data)
     }).catch(error => console.error('Error:', error)); 
     
-  fetch('/user').then((res) =>
+  fetch(`${API}/user`).then((res) =>
   res.json().then((data) => {
     console.log(data)
     if (data){to('profile')}

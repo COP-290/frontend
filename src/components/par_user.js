@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react"
 import { useNavigate,useParams } from "react-router-dom";
+import { API } from "./api";
 
 export default function Par_user() {
   const [detail,setDetail] = useState([])
@@ -8,7 +9,7 @@ export default function Par_user() {
   console.log(id);
 
   useEffect(() => {
-    fetch(`https://askq.up.railway.app/user/${id}`).then((res) =>
+    fetch(`${API}/user/${id}`).then((res) =>
         res.json().then((data) => {
           console.log(data)
           setDetail(data[1])

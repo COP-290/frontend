@@ -1,10 +1,11 @@
 import {useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { API } from './api';
 export default function Ans({value:value}){
     // console.log(value)
   const [user,setUser] = useState(null);
   const [score,setScore] = useState(0);
-   
+  
     let navigate = useNavigate();
     const to = async (id) => {
       let path = `/${id}`;
@@ -12,14 +13,14 @@ export default function Ans({value:value}){
     }
 
     function inc(){
-      fetch('/user').then((res) =>
+      fetch(`${API}/user`).then((res) =>
       res.json().then((dat) => {
         console.log(dat)
         if (dat===false){to('login')}
       })
   );
 
-      fetch(`/${value[0]}/upans`).then((res) =>
+      fetch(`${API}/${value[0]}/upans`).then((res) =>
       res.json().then((data) => {
         console.log(data);
         if (data===score){alert("Already Voted")}
@@ -29,14 +30,14 @@ export default function Ans({value:value}){
     }
 
     function dec(){
-      fetch('/user').then((res) =>
+      fetch(`${API}/user`).then((res) =>
       res.json().then((dat) => {
         console.log(dat)
         if (dat===false){to('login')}
       })
   );
 
-      fetch(`/${value[0]}/downans`).then((res) =>
+      fetch(`${API}/${value[0]}/downans`).then((res) =>
       res.json().then((data) => {
         console.log(data);
         if (data===score){alert("Already Voted")}
@@ -50,7 +51,7 @@ export default function Ans({value:value}){
   },[value]);
 
   useEffect(() => {
-    if (value){    fetch(`/user/${value[1]}`).then((res) =>
+    if (value){    fetch(`${API}/user/${value[1]}`).then((res) =>
             res.json().then((data) => {
               console.log(data)
               setUser(data[1])

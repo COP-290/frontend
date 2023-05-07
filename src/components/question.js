@@ -4,7 +4,7 @@ import hljs from "highlight.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { PaginationControl } from 'react-bootstrap-pagination-control';
 import Q from "./q";
-
+import { API } from "./api";
 export default function Question() {
 
   const [data,setdata] = useState(null);
@@ -25,7 +25,7 @@ export default function Question() {
   });
 
   function newq(){
-    fetch('/user').then((res) =>
+    fetch(`${API}/user`).then((res) =>
         res.json().then((dat) => {
           console.log(dat)
           if (dat===false){to('login')}
@@ -36,7 +36,7 @@ export default function Question() {
 
   useEffect(() => {
     console.log(sortby)
-    fetch(id?`/${encodeURIComponent(id.trim())}/${page}${sortby}/question`:`${sortby}/question/${page}`).then((res) =>
+    fetch(id?`${API}/${encodeURIComponent(id.trim())}/${page}${sortby}/question`:`${API}/${sortby}/question/${page}`).then((res) =>
         res.json().then((data) => {
             console.log(data);
             setdata(data)
@@ -47,7 +47,7 @@ export default function Question() {
   );
 
 useEffect(() => {
-    fetch(id?`/${encodeURIComponent(id.trim())}/question/number`:`/question/number`).then((res) =>
+    fetch(id?`${API}/${encodeURIComponent(id.trim())}/question/number`:`${API}/question/number`).then((res) =>
         res.json().then((data) => {
             console.log(data);
             setNumber(parseInt(data))

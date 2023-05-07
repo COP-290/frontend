@@ -1,7 +1,7 @@
 import JoditEditor from "jodit-react";
 import { useState,useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom";
-
+import { API } from "./api";
 export default function Profile() {
   const [content,setContent] = useState('');
   const editor = useRef(null);
@@ -24,7 +24,7 @@ export default function Profile() {
   }  
 
   function about(){
-    fetch(`/user/aboutme`, {
+    fetch(`${API}/user/aboutme`, {
         method: 'POST',
         body: JSON.stringify({
           'About' : content
@@ -42,7 +42,7 @@ export default function Profile() {
 
   function logout(){
     to('login')
-    fetch(`/logout`, {
+    fetch(`${API}/logout`, {
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         }
@@ -55,7 +55,7 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    fetch('/user').then((res) =>
+    fetch(`${API}/user`).then((res) =>
         res.json().then((data) => {
           console.log(data)
           if (data===false){to('login')}
