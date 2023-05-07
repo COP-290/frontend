@@ -8,7 +8,7 @@ export default function Par_user() {
   console.log(id);
 
   useEffect(() => {
-    fetch(`/user/${id}`).then((res) =>
+    fetch(`https://askq.up.railway.app/user/${id}`).then((res) =>
         res.json().then((data) => {
           console.log(data)
           setDetail(data[1])
