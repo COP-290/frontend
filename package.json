@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://flask-production-8143.up.railway.app/",
+  "proxy": "https://askq.up.railway.app/",
   "dependencies": {
     "bootstrap": "^5.2.3",
     "highlight.js": "^11.7.0",
