@@ -1,1 +1,1 @@
-export const API = "https://askq.up.railway.app";
+export const API = "https://askq-backend.vercel.app";

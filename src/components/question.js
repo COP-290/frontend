@@ -36,7 +36,7 @@ export default function Question() {
 
   useEffect(() => {
     console.log(sortby)
-    fetch(id?`${API}/${encodeURIComponent(id.trim())}/${page}${sortby}/question`:`${API}/${sortby}/question/${page}`).then((res) =>
+    fetch(id?`${API}/${encodeURIComponent(id.trim())}/${page}${sortby}/question`:`${API}${sortby}/question/${page}`).then((res) =>
         res.json().then((data) => {
             console.log(data);
             setdata(data)
