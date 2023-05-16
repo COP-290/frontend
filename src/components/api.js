@@ -1,1 +1,1 @@
-export const API = "https://askq-backend.vercel.app";
+export const API = "http://4.240.112.39:8080";
