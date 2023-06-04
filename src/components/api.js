@@ -1,1 +1,1 @@
-export const API = "https://raghav.centralindia.cloudapp.azure.com:8080";
+export const API = "https://askq.azurewebsites.net";
